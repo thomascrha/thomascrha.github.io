@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <title>Pydirve Automated Authentication</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="https://thomascrha.github.io/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="https://thomascrha.github.io/theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="https://thomascrha.github.io/theme/css/code_blocks/tomorrow_night.css" rel="stylesheet">
+
+
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+
+        <meta name="author" content="Thomas Crha">
+
+
+	                <meta property="og:locale" content="">
+		<meta property="og:site_name" content="9bitbyte">
+
+	<meta property="og:type" content="article">
+            <meta property="article:author" content="https://thomascrha.github.io/author/thomas-crha.html">
+	<meta property="og:url" content="https://thomascrha.github.io/pydirve-automated-authentication.html">
+	<meta property="og:title" content="Pydirve Automated Authentication">
+	<meta property="article:published_time" content="2016-12-12 21:36:00+11:00">
+
+            <meta property="og:image" content="https://thomascrha.github.io/images/background.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@bitbyte9">
+        <meta name="twitter:title" content="Pydirve Automated Authentication">
+
+            <meta name="twitter:image" content="https://thomascrha.github.io/images/background.jpg">
+
+            <meta name="twitter:description" content="">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://thomascrha.github.io/">9bitbyte</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about/">About</a></li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('images/background.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Pydirve Automated Authentication</h1>
+                        <span class="meta">Posted by
+                                <a href="https://thomascrha.github.io/author/thomas-crha.html">Thomas Crha</a>
+                             on Mon 12 December 2016
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <p>This seems to be something that is not clearly documented and can be frustrating to set up - especially when involving a crontab. The biggest problem is how the oauth scheme is defined by pydirve itself. It requires the user to have <code>client_secrets.json</code> next to the script you are developing; or create a custom flow in code, which isn't the best practice</p>
+<p>The Pydirve module has a convenient way to create custom work flows without having it directly in code; making updates to credentials and keys easier. <code>settings.yaml</code> is the mechanism used to create these custom authentication schemes. This file is fully outlined in <a href="http://pythonhosted.org/PyDrive/oauth.html">this</a> page. Before you can start defining your own oauth work-flow you'll need to download your <code>client_secrets.json</code> from the <a href="https://console.developers.google.com">Google API Console</a>. The instructions for this are outlined within the Pydirve <a href="" title="https://pythonhosted.org/PyDrive/quickstart.html">docs</a>.</p>
+<p>The <code>client_secrets.json</code> contains several fields which are needed for the <code>settings.yaml</code> file. Below is a copy of my <code>client_secrets.json</code> file - with the sensitive data hashed out.</p>
+<div class="highlight"><pre><span></span>&quot;client_id&quot;:&quot;################.apps.googleusercontent.com&quot;,
+&quot;project_id&quot;:&quot;YOUR_PROJECT_NAME&quot;,
+&quot;auth_uri&quot;:&quot;https://accounts.google.com/o/oauth2/auth&quot;,
+&quot;token_uri&quot;:&quot;https://accounts.google.com/o/oauth2/token&quot;,
+&quot;auth_provider_x509_cert_url&quot;:&quot;https://www.googleapis.com/oauth2/v1/certs&quot;,
+&quot;client_secret&quot;:&quot;#############&quot;,
+&quot;redirect_uris&quot;:[&quot;http://localhost:8080/&quot;],
+&quot;javascript_origins&quot;:[&quot;http://localhost:8080&quot;]
+</pre></div>
+
+
+<p>How Pydirve works out of the box is; you initialize the Class <code>GoogleAuth</code> and then call the Class method <code>LocalWebserverAuth()</code>. What this method does is call the <code>client_secrets.json</code> file and uses it to determine the API endpoint you wish to access. It then starts a local browser session - using the settings provided in <code>client_secrets.json</code> - which then requires the user to confirm the Google Account to be used and whether it can have permission to do so.</p>
+<p>What we need to do is automate this user interaction. To do so we need to save the credential/work-flow file produced during the call to <code>LocalWebserverAuth()</code>. Pydrive has a method to do so. To save this file run the code snippet below, keeping note of the outputted file - the file produced is required to automate the oauth process.</p>
+<div class="highlight"><pre><span></span>gauth = GoogleAuth()
+gauth.LocalWebserverAuth()
+gauth.SaveCredentialsFile(&#39;./cred.json&#39;)
+</pre></div>
+
+
+<p>Now we have our credential file, we can finally construct our <code>settings.yaml</code> file. I used this sample provided on the <a href="http://pythonhosted.org/PyDrive/oauth.html#sample-settings-yaml">PyDrive docs site</a> to create mine.</p>
+<div class="highlight"><pre><span></span>settings.yaml
+client_config_backend: settings
+client_config:
+   #make sure these match the client_secrets.json
+   client_id: ###########################.apps.googleusercontent.com
+   client_secret: #################
+   auth_uri: https://accounts.google.com/o/oauth2/auth
+   token_uri: https://accounts.google.com/o/oauth2/token
+   redirect_uri: http://localhost:8080/ 
+
+save_credentials: True  
+save_credentials_backend: file  
+save_credentials_file: /abs/path/to/pydrive-credentials.json
+
+get_refresh_token: True
+
+oauth_scope:
+  - https://www.googleapis.com/auth/drive
+  - https://www.googleapis.com/auth/drive.file
+  - https://www.googleapis.com/auth/drive.install 
+</pre></div>
+
+
+<p>The main points from this file are that the <code>client_config_backend</code> is set to settings. This tells PyDrive to use the settings listed below; rather than using the <code>client_secrets.json</code> file. If you set it to <code>file</code> you can set the path of it via the <code>client_config_file</code> setting. This method seems to cause a crontab problems; as the <code>client_config_file</code> doesn't seem to be scope-able by the cron daemon - at least that's my experience. </p>
+<p>Now to use this oauth work flow simply issue this code - replacing <code>SETTINGS</code> with your file ( be sure to make it an abs path).</p>
+<div class="highlight"><pre><span></span>gauth = GoogleAuth(SETTINGS)
+gauth.LocalWebserverAuth()
+drive = GoogleDrive(gauth)
+</pre></div>
+
+
+<p>Now you'll have a <code>Drive</code> object ready to use and upload/manipulate files to your <a href="http://drive.google.com">Google Drive</a>!</p>
+    </article>
+
+
+    <hr>
+	<script type="text/javascript">
+    	    var disqus_shortname = 'thomascrha-github-io';
+            (function () {
+            	var s = document.createElement('script'); s.async = true;
+            	s.type = 'text/javascript';
+            	s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            	(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+            }());
+	</script>
+ 
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                            <li>
+                                <a href="http://twitter.com/bitbyte9">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://github.com/moosethemucha">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://linkedin.com/in/thomascrha">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                    </ul>
+<p class="copyright text-muted">
+    Blog powered by <a href="http://getpelican.com">Pelican</a>,
+    which takes great advantage of <a href="http://python.org">Python</a>.
+</p>                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://thomascrha.github.io/theme/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://thomascrha.github.io/theme/js/bootstrap.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="https://thomascrha.github.io/theme/js/clean-blog.min.js"></script>
+
+<script type="text/javascript">
+    var disqus_shortname = 'thomascrha-github-io';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+
+</html>
