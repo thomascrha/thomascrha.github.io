@@ -16,54 +16,54 @@
 &lt;p&gt;I believe that challenging projects are usually the most rewarding and fun! I’ve done my research and have found a lot of your competitors are providing short term, no frills contracts, that are generally very task driven and aren’t extremely original – these are fine and will pay the bills; but I want to get my teeth stuck into something more complex and interesting, something I believe &lt;a href="https://www.toptal.com/web"&gt;Toptal&lt;/a&gt; provides. &lt;a href="https://www.toptal.com/web"&gt;Toptal&lt;/a&gt;’s different Web developers Network's provide you with a wealth of experience and knowledge that I hope to tap into. The python Web developers Network you have is a great resource. &lt;a href="https://www.toptal.com/python"&gt;Python&lt;/a&gt;.&lt;/p&gt;</content></entry><entry><title>Pydirve Automated Authentication</title><link href="/pydirve-automated-authentication.html" rel="alternate"></link><published>2016-12-12T21:36:00+11:00</published><updated>2016-12-12T21:36:00+11:00</updated><author><name>Thomas Crha</name></author><id>tag:None,2016-12-12:/pydirve-automated-authentication.html</id><summary type="html"></summary><content type="html">&lt;p&gt;This seems to be something that is not clearly documented and can be frustrating to set up - especially when involving a crontab. The biggest problem is how the oauth scheme is defined by pydirve itself. It requires the user to have &lt;code&gt;client_secrets.json&lt;/code&gt; next to the script you are developing; or create a custom flow in code, which isn't the best practice&lt;/p&gt;
 &lt;p&gt;The Pydirve module has a convenient way to create custom work flows without having it directly in code; making updates to credentials and keys easier. &lt;code&gt;settings.yaml&lt;/code&gt; is the mechanism used to create these custom authentication schemes. This file is fully outlined in &lt;a href="http://pythonhosted.org/PyDrive/oauth.html"&gt;this&lt;/a&gt; page. Before you can start defining your own oauth work-flow you'll need to download your &lt;code&gt;client_secrets.json&lt;/code&gt; from the &lt;a href="https://console.developers.google.com"&gt;Google API Console&lt;/a&gt;. The instructions for this are outlined within the Pydirve &lt;a href="" title="https://pythonhosted.org/PyDrive/quickstart.html"&gt;docs&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;client_secrets.json&lt;/code&gt; contains several fields which are needed for the &lt;code&gt;settings.yaml&lt;/code&gt; file. Below is a copy of my &lt;code&gt;client_secrets.json&lt;/code&gt; file - with the sensitive data hashed out.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;quot;client_id&amp;quot;:&amp;quot;################.apps.googleusercontent.com&amp;quot;,
-&amp;quot;project_id&amp;quot;:&amp;quot;YOUR_PROJECT_NAME&amp;quot;,
-&amp;quot;auth_uri&amp;quot;:&amp;quot;https://accounts.google.com/o/oauth2/auth&amp;quot;,
-&amp;quot;token_uri&amp;quot;:&amp;quot;https://accounts.google.com/o/oauth2/token&amp;quot;,
-&amp;quot;auth_provider_x509_cert_url&amp;quot;:&amp;quot;https://www.googleapis.com/oauth2/v1/certs&amp;quot;,
-&amp;quot;client_secret&amp;quot;:&amp;quot;#############&amp;quot;,
-&amp;quot;redirect_uris&amp;quot;:[&amp;quot;http://localhost:8080/&amp;quot;],
-&amp;quot;javascript_origins&amp;quot;:[&amp;quot;http://localhost:8080&amp;quot;]
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;client_id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;################.apps.googleusercontent.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="ss"&gt;&amp;quot;project_id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;YOUR_PROJECT_NAME&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="ss"&gt;&amp;quot;auth_uri&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;https://accounts.google.com/o/oauth2/auth&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="ss"&gt;&amp;quot;token_uri&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;https://accounts.google.com/o/oauth2/token&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="ss"&gt;&amp;quot;auth_provider_x509_cert_url&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;https://www.googleapis.com/oauth2/v1/certs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="ss"&gt;&amp;quot;client_secret&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;#############&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="ss"&gt;&amp;quot;redirect_uris&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:[&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;http://localhost:8080/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="ss"&gt;&amp;quot;javascript_origins&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:[&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;http://localhost:8080&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;How Pydirve works out of the box is; you initialize the Class &lt;code&gt;GoogleAuth&lt;/code&gt; and then call the Class method &lt;code&gt;LocalWebserverAuth()&lt;/code&gt;. What this method does is call the &lt;code&gt;client_secrets.json&lt;/code&gt; file and uses it to determine the API endpoint you wish to access. It then starts a local browser session - using the settings provided in &lt;code&gt;client_secrets.json&lt;/code&gt; - which then requires the user to confirm the Google Account to be used and whether it can have permission to do so.&lt;/p&gt;
 &lt;p&gt;What we need to do is automate this user interaction. To do so we need to save the credential/work-flow file produced during the call to &lt;code&gt;LocalWebserverAuth()&lt;/code&gt;. Pydrive has a method to do so. To save this file run the code snippet below, keeping note of the outputted file - the file produced is required to automate the oauth process.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gauth = GoogleAuth()
-gauth.LocalWebserverAuth()
-gauth.SaveCredentialsFile(&amp;#39;./cred.json&amp;#39;)
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;gauth&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GoogleAuth&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;gauth&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;LocalWebserverAuth&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;gauth&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SaveCredentialsFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;./cred.json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Now we have our credential file, we can finally construct our &lt;code&gt;settings.yaml&lt;/code&gt; file. I used this sample provided on the &lt;a href="http://pythonhosted.org/PyDrive/oauth.html#sample-settings-yaml"&gt;PyDrive docs site&lt;/a&gt; to create mine.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;settings.yaml
-client_config_backend: settings
-client_config:
-   #make sure these match the client_secrets.json
-   client_id: ###########################.apps.googleusercontent.com
-   client_secret: #################
-   auth_uri: https://accounts.google.com/o/oauth2/auth
-   token_uri: https://accounts.google.com/o/oauth2/token
-   redirect_uri: http://localhost:8080/ 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;yaml&lt;/span&gt;
+&lt;span class="n"&gt;client_config_backend&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;
+&lt;span class="n"&gt;client_config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+   &lt;span class="o"&gt;#&lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;sure&lt;/span&gt; &lt;span class="n"&gt;these&lt;/span&gt; &lt;span class="k"&gt;match&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;client_secrets&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;
+   &lt;span class="n"&gt;client_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;###########################&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;googleusercontent&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+   &lt;span class="n"&gt;client_secret&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;#################&lt;/span&gt;
+   &lt;span class="n"&gt;auth_uri&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;accounts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;oauth2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;auth&lt;/span&gt;
+   &lt;span class="n"&gt;token_uri&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;accounts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;oauth2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;
+   &lt;span class="n"&gt;redirect_uri&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;localhost&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;8080&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt; 
 
-save_credentials: True  
-save_credentials_backend: file  
-save_credentials_file: /abs/path/to/pydrive-credentials.json
+&lt;span class="n"&gt;save_credentials&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;True&lt;/span&gt;  
+&lt;span class="n"&gt;save_credentials_backend&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;  
+&lt;span class="n"&gt;save_credentials_file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;abs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pydrive&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;credentials&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;
 
-get_refresh_token: True
+&lt;span class="n"&gt;get_refresh_token&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;True&lt;/span&gt;
 
-oauth_scope:
-  - https://www.googleapis.com/auth/drive
-  - https://www.googleapis.com/auth/drive.file
-  - https://www.googleapis.com/auth/drive.install 
+&lt;span class="n"&gt;oauth_scope&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;googleapis&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;drive&lt;/span&gt;
+  &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;googleapis&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;drive&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;
+  &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;googleapis&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;drive&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;The main points from this file are that the &lt;code&gt;client_config_backend&lt;/code&gt; is set to settings. This tells PyDrive to use the settings listed below; rather than using the &lt;code&gt;client_secrets.json&lt;/code&gt; file. If you set it to &lt;code&gt;file&lt;/code&gt; you can set the path of it via the &lt;code&gt;client_config_file&lt;/code&gt; setting. This method seems to cause a crontab problems; as the &lt;code&gt;client_config_file&lt;/code&gt; doesn't seem to be scope-able by the cron daemon - at least that's my experience. &lt;/p&gt;
 &lt;p&gt;Now to use this oauth work flow simply issue this code - replacing &lt;code&gt;SETTINGS&lt;/code&gt; with your file ( be sure to make it an abs path).&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gauth = GoogleAuth(SETTINGS)
-gauth.LocalWebserverAuth()
-drive = GoogleDrive(gauth)
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;gauth&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GoogleAuth&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SETTINGS&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;gauth&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;LocalWebserverAuth&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;drive&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GoogleDrive&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gauth&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
